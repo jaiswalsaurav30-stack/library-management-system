@@ -244,7 +244,7 @@ This project was developed as an **academic project** to demonstrate practical c
 
 ## Author
 
-**Saurav Jaiswal**
+**SAURAV KUMAR JAISWAL**
 
 Diploma in Computer Science Engineering
 
