@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVIGATION BAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            📚 Library Management System
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#books">Books</a>
+
+            <a href="#members">Members</a>
+
+            <a href="#categories">Categories</a>
+
+            <a href="#issue">Issue / Return</a>
+
+            <button onclick="openLogin()">
+                Login
+            </button>
+
+            <button onclick="openRegister()">
+                Register
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         HERO SECTION
+    ========================== -->
+
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to Library Management System
+            </h1>
+
+            <p>
+                Manage books, members, categories and borrowing
+                easily from one place.
+            </p>
+
+            <div class="hero-buttons">
+
+                <button onclick="showBooks()">
+                    View Books
+                </button>
+
+                <button class="secondary-btn" onclick="openLogin()">
+                    Login
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <section class="dashboard">
+
+        <h2>
+            Library Dashboard
+        </h2>
+
+        <div class="dashboard-grid">
+
+            <!-- Total Books -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📚
+                </div>
+
+                <h3>
+                    Total Books
+                </h3>
+
+                <p id="totalBooks">
+                    0
+                </p>
+
+            </div>
+
+
+            <!-- Total Members -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    👥
+                </div>
+
+                <h3>
+                    Total Members
+                </h3>
+
+                <p id="totalMembers">
+                    0
+                </p>
+
+            </div>
+
+
+            <!-- Categories -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    🏷️
+                </div>
+
+                <h3>
+                    Categories
+                </h3>
+
+                <p id="totalCategories">
+                    0
+                </p>
+
+            </div>
+
+
+            <!-- Borrowed Books -->
+
+            <div class="dashboard-card">
+
+                <div class="card-icon">
+                    📖
+                </div>
+
+                <h3>
+                    Borrowed Books
+                </h3>
+
+                <p id="borrowedBooks">
+                    0
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOOKS SECTION
+    ========================== -->
+
+    <section id="books" class="content-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Available Books
+                </h2>
+
+                <p>
+                    Browse books available in the library.
+                </p>
+
+            </div>
+
+            <button onclick="loadBooks()">
+                Refresh Books
+            </button>
+
+        </div>
+
+
+        <div id="booksContainer" class="cards-container">
+
+            <div class="loading">
+                Loading books...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         MEMBERS SECTION
+    ========================== -->
+
+    <section id="members" class="content-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Library Members
+                </h2>
+
+                <p>
+                    Registered library members.
+                </p>
+
+            </div>
+
+            <button onclick="loadMembers()">
+                Refresh Members
+            </button>
+
+        </div>
+
+
+        <div id="membersContainer" class="table-container">
+
+            <p class="loading">
+                Loading members...
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES SECTION
+    ========================== -->
+
+    <section id="categories" class="content-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Book Categories
+                </h2>
+
+                <p>
+                    Browse available book categories.
+                </p>
+
+            </div>
+
+            <button onclick="loadCategories()">
+                Refresh Categories
+            </button>
+
+        </div>
+
+
+        <div id="categoriesContainer" class="cards-container">
+
+            <div class="loading">
+                Loading categories...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         ISSUE / RETURN SECTION
+    ========================== -->
+
+    <section id="issue" class="content-section">
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Issue / Return Books
+                </h2>
+
+                <p>
+                    Manage book borrowing and returns.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="action-grid">
+
+
+            <!-- ISSUE BOOK -->
+
+            <div class="form-card">
+
+                <h3>
+                    📖 Issue Book
+                </h3>
+
+
+                <form id="issueBookForm">
+
+                    <label>
+                        Member ID
+                    </label>
+
+                    <input type="text" id="issueMemberId" placeholder="Enter member ID" required>
+
+
+                    <label>
+                        Book ID
+                    </label>
+
+                    <input type="text" id="issueBookId" placeholder="Enter book ID" required>
+
+
+                    <label>
+                        Due Date
+                    </label>
+
+                    <input type="date" id="dueDate" required>
+
+
+                    <button type="submit">
+                        Issue Book
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- RETURN BOOK -->
+
+            <div class="form-card">
+
+                <h3>
+                    🔄 Return Book
+                </h3>
+
+
+                <form id="returnBookForm">
+
+                    <label>
+                        Borrowing ID
+                    </label>
+
+                    <input type="text" id="returnBorrowingId" placeholder="Enter borrowing ID" required>
+
+
+                    <button type="submit">
+                        Return Book
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             BORROWING RECORDS
+        ========================== -->
+
+        <div class="borrowing-records">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Borrowing Records
+                    </h2>
+
+                    <p>
+                        Current and previous borrowing records.
+                    </p>
+
+                </div>
+
+                <button onclick="loadBorrowings()">
+                    Refresh Records
+                </button>
+
+            </div>
+
+
+            <div id="borrowingsContainer" class="table-container">
+
+                <p class="loading">
+                    Loading borrowing records...
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         LOGIN MODAL
+    ========================== -->
+
+    <div id="loginModal" class="modal">
+
+        <div class="modal-content">
+
+
+            <span class="close" onclick="closeLogin()">
+
+                &times;
+
+            </span>
+
+
+            <h2>
+                🔐 User Login
+            </h2>
+
+
+            <form id="loginForm">
+
+
+                <label>
+                    Email
+                </label>
+
+                <input type="email" id="loginEmail" placeholder="Enter email" required>
+
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password" id="loginPassword" placeholder="Enter password" required>
+
+
+                <button type="submit">
+                    Login
+                </button>
+
+            </form>
+
+
+            <div id="loginMessage"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         REGISTER MODAL
+    ========================== -->
+
+    <div id="registerModal" class="modal">
+
+        <div class="modal-content">
+
+
+            <span class="close" onclick="closeRegister()">
+
+                &times;
+
+            </span>
+
+
+            <h2>
+                📝 Register User
+            </h2>
+
+
+            <form id="registerForm">
+
+
+                <label>
+                    Name
+                </label>
+
+                <input type="text" id="registerName" placeholder="Enter name" required>
+
+
+                <label>
+                    Email
+                </label>
+
+                <input type="email" id="registerEmail" placeholder="Enter email" required>
+
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password" id="registerPassword" placeholder="Enter password" required>
+
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+
+            <div id="registerMessage"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         NOTIFICATION
+    ========================== -->
+
+    <div id="notification" class="notification">
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            © 2026 Library Management System
+        </p>
+
+        <p>
+            Developed using HTML, CSS, JavaScript,
+            Node.js, Express.js and MongoDB
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
